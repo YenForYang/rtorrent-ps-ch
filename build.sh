@@ -20,9 +20,9 @@ git_rt='327164f'                # 2018-06-07 master v0.9.7
 
 # Dependency versions
 cares_version='1.14.0'          # 2018.02.16
-curl_version='7.61.1'           # 2018.09.05 ; WARNING: see rT issue #457 regarding curl configure options
+curl_version='7.62.0'           # 2018.09.05 ; WARNING: see rT issue #457 regarding curl configure options
 xmlrpc_tree='stable'            # [super-stable | stable | advanced]
-xmlrpc_rev='2985'               # 2018.04.08 v1.43.07
+xmlrpc_rev='3025'               # 2018.04.08 v1.43.07
 export cares_version curl_version xmlrpc_tree xmlrpc_rev
 
 
