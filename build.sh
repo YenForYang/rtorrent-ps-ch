@@ -405,7 +405,7 @@ build_cares() { # Build direct dependency: c-ares
     [[ -d "$tarballs_dir" && -f "$tarballs_dir/DONE-cares" ]] && rm -f "$tarballs_dir/DONE-cares" >/dev/null
 
     bold '~~~~~~~~~~~~~~~~~~~~~~~~   Building c-ares   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-    ( set +x ; cd "c-ares-$cares_version" \
+    ( set +x ; cd "c-ares-$cares_version" && sed -i 's/^CARES_CHECK_COMPILER_PROTOTYPE_MISMATCH/#CARES_CHECK_COMPILER_PROTOTYPE_MISMATCH/' configure.ac && autoconf -v \
         && ./configure --prefix="$build_dir" \
         && $make_bin $make_opts \
         && $make_bin install \
@@ -700,7 +700,7 @@ check() { # root_dir : Print some diagnostic success indicators
 }
 
 install() { # Install (copy) to $pkg_inst_dir
-    [[ ! -f "$build_dir/$ver_info_filename" ]] && fail "Compilation hasn't been finished, try it again."
+    [[ ! -f "$build_dir/$ver_info_filename" ]] && echo "$build_dir/$ver_info_filename" && fail "Compilation hasn't been finished, try it again."
     [[ -d "$pkg_inst_dir" && -f "$pkg_inst_dir/bin/rtorrent" ]] && fail "Could not clean install into dir '$pkg_inst_dir', dir already exists."
 
     cp -r "$build_dir" "$root_pkg_dir/" || fail "Could not copy into dir '$pkg_inst_dir', have you tried with 'sudo'?"
